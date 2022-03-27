@@ -1,0 +1,55 @@
+<button type="button" class="btn btn-info" (click)="openModal('add')">
+  + Add Restaurant
+</button>
+<app-restaurant-modal
+  [message]="message"
+  [editMode]="editMode"
+  [editRestaurant]="editRestaurant"
+  *ngIf="showModal"
+  (restaurantCreated)="addRestaurant($event)"
+  (closeModalPopup)="closeModal($event)"
+></app-restaurant-modal>
+
+<app-delete-modal
+  *ngIf="showDeleteModal"
+  [item]="deletedRestaurantId"
+  (closeDeleteModalPopup)="closeDeleteModal($event)"
+  (itemDeleted)="deleteRestaurant($event)"
+></app-delete-modal>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Chef</th>
+      <th scope="col">Signature Dish</th>
+      <th scope="col">Popular</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let restaurant of restaurants">
+    <tr>
+      <th scope="row">
+        <img
+          [src]="restaurant.image"
+          class="img-thumbnail"
+          width="100px"
+          height="100px"
+        />
+      </th>
+      <td>{{ restaurant.name }}</td>
+      <td>{{ restaurant.Chef?.name }}</td>
+      <td>{{ restaurant.signatureDish?.name }}</td>
+      <td>{{ restaurant.isPopular === false ? "No" : "Yes" }}</td>
+      <td class="action-link">
+        <a>
+          <button (click)="openModal('edit', restaurant)">Edit</button>
+        </a>
+        |
+        <a>
+          <button (click)="openDeleteModal(restaurant._id)">Delete</button>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

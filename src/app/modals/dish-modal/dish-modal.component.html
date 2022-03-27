@@ -1,0 +1,48 @@
+<div class="backdrop">
+    <form [formGroup]="dishForm" (ngSubmit)="onSubmit()">
+      <h2>{{ message }}</h2>
+      <label for="name">Name: </label>
+      <input id="name" formControlName="name" type="text" class="form-control" />
+      <span
+        *ngIf="
+          !dishForm.get('name').valid &&
+          dishForm.get('name').touched
+        "
+      >
+        Please enter a valid name
+      </span>
+    
+      <label for="price">Price: </label>
+      <input type="number" formControlName="price" class="form-control" required/>
+
+      <label for="ingredients">Ingredients: </label>
+      <input type="text" formControlName="ingredients" class="form-control" required/>
+
+      <label for="tags">Tags: </label>
+      <div class="tags">
+        <div *ngFor="let choice of tags; let i=index" class="col-md-2">
+          <label>
+            <input type="checkbox" [id]="choice" [value]="choice" (change)="onCheckChange($event)">
+            {{choice}}
+          </label>
+        </div>
+      </div>
+
+      <label for="image"> Image URL: </label>
+      <input
+        id="image"
+        formControlName="image"
+        type="text"
+        class="form-control"
+        #image
+      />
+      <div>
+        <img   [src]="image.value" />
+      </div>
+      <br />
+      <button class="btn btn-success" type="submit">
+        {{ editMode === "edit" ? "Update" : "Add" }}
+      </button>
+      <button class="btn btn-secondary" (click)="closeModal()">Close</button>
+    </form>
+  </div>

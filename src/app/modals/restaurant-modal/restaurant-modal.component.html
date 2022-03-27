@@ -1,0 +1,78 @@
+<div class="backdrop">
+  <form [formGroup]="retstaurantForm" (ngSubmit)="onSubmit()">
+    <h2>{{ message }}</h2>
+    <label for="name">*Name: </label>
+    <input id="name" formControlName="name" type="text" class="form-control" />
+    <span
+      *ngIf="
+        !retstaurantForm.get('name').valid &&
+        retstaurantForm.get('name').touched
+      "
+    >
+      Please enter a valid name
+    </span>
+    <label for="chef">*Chef: </label>
+    <select id="Chef" formControlName="Chef">
+      <option [defaultSelected]="true" [value]="retstaurantForm.get('Chef')">
+        {{ this.retstaurantForm.value.Chef.name }}
+      </option>
+      <option *ngFor="let c of chefs" [ngValue]="c">{{ c.name }}</option>
+    </select>
+    <span
+      *ngIf="
+        !retstaurantForm.get('Chef').valid &&
+        retstaurantForm.get('Chef').touched
+      "
+    >
+      Please Choose a chef
+    </span>
+
+    <label for="signatureDish"> *Signature Dish: </label>
+    <select id="Chef" formControlName="signatureDish">
+      <option
+        [defaultSelected]="true"
+        [value]="retstaurantForm.get('signatureDish')"
+      >
+        {{ this.retstaurantForm.value.signatureDish.name }}
+      </option>
+      <option *ngFor="let dish of dishes" [ngValue]="dish">
+        {{ dish.name }}
+      </option>
+    </select>
+    <span
+    *ngIf="
+      !retstaurantForm.get('signatureDish').valid &&
+      retstaurantForm.get('signatureDish').touched
+    "
+  >
+    Please Choose a Signature Dish
+  </span>
+    <label for="popular"> Is Popular? </label>
+    <div class="radio" *ngFor="let status of isPopular">
+      <label for="isPopular">
+        <input type="radio" formControlName="isPopular" [value]="status" />
+        {{ status === false ? "No" : "Yes" }}
+      </label>
+    </div>
+    <label for="image"> Image URL: </label>
+    <input
+      id="image"
+      formControlName="image"
+      type="text"
+      class="form-control"
+      #image
+    />
+    <div>
+      <img [src]="image.value" />
+    </div>
+    <br />
+    <button
+      class="btn btn-success"
+      type="submit"
+      [disabled]="!retstaurantForm.valid"
+    >
+      {{ editMode === "edit" ? "Update" : "Add" }}
+    </button>
+    <button class="btn btn-secondary" (click)="closeModal()">Close</button>
+  </form>
+</div>

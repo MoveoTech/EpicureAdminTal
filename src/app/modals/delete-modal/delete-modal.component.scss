@@ -1,0 +1,28 @@
+.deleteModal{
+    position: fixed;
+    background-color: whitesmoke;
+    width: 100vw;
+    height: 40vh;
+    text-align: center;
+    border: 3px ridge;
+    .content{
+        padding-top: 50px;
+        h2{
+            color: firebrick;
+        }
+        .btn.btn-warning{
+            background-color:firebrick;
+            border-color:firebrick;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin: 15px;
+        }
+        .btn.btn-secondary{
+            padding-left: 24px;
+            padding-right: 24px;
+            margin: 3px;
+            background-color: darkgray;
+        }
+    }
+  
+}

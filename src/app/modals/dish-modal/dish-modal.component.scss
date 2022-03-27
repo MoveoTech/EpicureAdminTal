@@ -1,0 +1,42 @@
+.backdrop{
+    position: absolute;
+    background-color: whitesmoke;
+    width: 100vw;
+    /* justify-content: center; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px ridge;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    margin-bottom: 15px;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-weight: lighter;
+    margin-right: 10px;
+}
+.btn.btn-secondary{
+    background-color: darkgray;
+}
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+.tags{
+    display: flex;
+    flex-direction: row;
+    div{
+        width: fit-content;
+    }
+}
