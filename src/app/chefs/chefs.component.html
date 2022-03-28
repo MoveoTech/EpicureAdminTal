@@ -16,6 +16,23 @@
  (itemDeleted)="deleteChef($event)"
  ></app-delete-modal>
 
+
+  <div class="card">
+    <img class="card-img-top" [src]="chefOfTheWeek?.ChefId?.image" alt="Card image cap">
+    <div class="card-body">
+      <h2 class="card-title">{{chefOfTheWeek?.ChefId?.name}}</h2>
+      <p class="card-text">{{chefOfTheWeek?.ChefId?.description}}</p>
+      <label for="chef">Update Chef Of The Week :  </label>
+      <form [formGroup]="chefOfTheWeekForm">
+        <select formControlName="ChefId" class="form-control">
+            <option *ngFor="let c of chefs" [ngValue]="c">{{ c.name }}</option>
+        </select>
+      </form>
+      <button class="button" type="submit" (click)="updateChefOfTheWeek()">Update</button>
+    </div>
+  </div>
+
+ 
 <table class="table">
     <thead>
       <tr>
